@@ -33,7 +33,8 @@ class MyStackTest {
         stack = new MyStack<>();
 
         // then
-        assertThatThrownBy(stack::peek).hasMessage("Stack is empty");
+        assertThatThrownBy(stack::peek).isInstanceOf(EmptyStackException.class)
+                .hasMessage("Stack is empty");
     }
 
     @Test
@@ -58,7 +59,8 @@ class MyStackTest {
         stack.pop();
 
         // then
-        assertThatThrownBy(stack::pop).hasMessage("Stack is empty");
+        assertThatThrownBy(stack::pop).isInstanceOf(EmptyStackException.class)
+                .hasMessage("Stack is empty");
     }
 
     @Test
@@ -92,7 +94,8 @@ class MyStackTest {
         stack.push("test10");
 
         // then
-        assertThatThrownBy(() -> stack.push("error")).hasMessage("Stack is full");
+        assertThatThrownBy(() -> stack.push("error")).isInstanceOf(FullStackException.class)
+                .hasMessage("Stack is full");
     }
 
     @Test
